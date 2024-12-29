@@ -1,6 +1,7 @@
 package conecta4;
 
 import java.util.Scanner;
+import javax.swing.JFrame;
 
 public class App {
 
@@ -46,7 +47,9 @@ public class App {
     }
 
     public static void partidaCBot(){
-
+        JFrame bg = new JFrame("Conecta4");
+        bg.setSize(1000, 600);
+        bg.setVisible(true);
     }
 
     public static void partidaCAmigo(){
