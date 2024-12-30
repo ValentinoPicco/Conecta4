@@ -68,6 +68,7 @@ public class Game {
         return turno;
     }
 
+    // comprueba si hay cuatro iguales en una linea horizontal
     private boolean comprobarHorizontal(){
         final int CONECTA = 4;
         int jugadorActual = getTurno();
@@ -84,6 +85,7 @@ public class Game {
         return false;
     }
 
+    // comprueba si hay cuatro iguales en una linea vertical
     private boolean comprobarVertical(){
         final int CONECTA = 4;
         int jugadorActual = getTurno();
@@ -98,5 +100,48 @@ public class Game {
             }
         }
         return false;
+    }
+
+    // comprueba si hay cuatro iguales en una diagonal creciente (/)
+    private boolean comprobarCreciente(){
+        final int CONECTA = 4;
+        int jugadorActual = getTurno();
+
+        for (int i = CONECTA - 1; i < filas; i++) {
+            for (int j = 0; j < columnas - CONECTA; j++) {
+                if (tablero[i][j] == jugadorActual &&
+                    tablero[i-1][j+1] == jugadorActual &&
+                    tablero[i-2][j+2] == jugadorActual &&
+                    tablero[i-3][j+3] == jugadorActual)
+                        return true;
+            }
+        }
+        return false;
+    }
+
+    // comprueba si hay cuatro iguales en una diagonal decreciente (\)
+    private boolean comprobarDecreciente(){
+        final int CONECTA = 4;
+        int jugadorActual = getTurno();
+
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas - CONECTA; j++) {
+                if (tablero[i][j] == jugadorActual &&
+                    tablero[i+1][j+1] == jugadorActual &&
+                    tablero[i+2][j+2] == jugadorActual &&
+                    tablero[i+3][j+3] == jugadorActual)
+                        return true;
+            }
+        }
+        return false;
+    }
+
+    // chequea si ya hay cuatro fichas iguales en una linea
+    public boolean hayGanador(){
+        return 
+            comprobarHorizontal() &&
+            comprobarVertical() &&
+            comprobarCreciente() &&
+            comprobarDecreciente();
     }
 }
